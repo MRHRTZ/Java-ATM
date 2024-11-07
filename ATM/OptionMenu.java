@@ -6,18 +6,28 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Kelas OptionMenu menyediakan antarmuka untuk pengguna ATM.
+ * Pengguna dapat masuk, membuat akun, dan mengakses berbagai jenis rekening.
+ */
 public class OptionMenu {
 	Scanner menuInput = new Scanner(System.in);
 	DecimalFormat moneyFormat = new DecimalFormat("'Rp'###,##0.00");
 	HashMap<Integer, Account> data = new HashMap<Integer, Account>();
 
+	/**
+	 * Memulai proses login pengguna.
+	 * Meminta nomor pelanggan dan PIN, lalu memverifikasi kredensial.
+	 * 
+	 * @throws IOException jika terjadi kesalahan input/output
+	 */
 	public void getLogin() throws IOException {
 		boolean end = false;
 		int customerNumber = 0;
 		int pinNumber = 0;
 		while (!end) {
 			try {
-				System.out.print("\nMasukan nomor rekening mu: ");
+				System.out.print("\nMasukan nomor pelanggan mu: ");
 				customerNumber = menuInput.nextInt();
 				System.out.print("\nMasukan kode PIN: ");
 				pinNumber = menuInput.nextInt();
@@ -32,7 +42,7 @@ public class OptionMenu {
 					}
 				}
 				if (!end) {
-					System.out.println("\nNo rekening atau PIN salah.");
+					System.out.println("\nNo pelanggan atau PIN salah.");
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("\nKarakter tidak valid, hanya menerima angka.");
@@ -40,6 +50,11 @@ public class OptionMenu {
 		}
 	}
 
+	/**
+	 * Menampilkan menu untuk memilih jenis akun yang akan diakses.
+	 * 
+	 * @param acc objek Account yang sedang diakses
+	 */
 	public void getAccountType(Account acc) {
 		boolean end = false;
 		while (!end) {
@@ -72,6 +87,11 @@ public class OptionMenu {
 		}
 	}
 
+	/**
+	 * Menampilkan menu dan opsi untuk rekening giro.
+	 * 
+	 * @param acc objek Account yang sedang diakses
+	 */
 	public void getChecking(Account acc) {
 		boolean end = false;
 		while (!end) {
@@ -113,6 +133,11 @@ public class OptionMenu {
 		}
 	}
 
+	/**
+	 * Menampilkan menu dan opsi untuk rekening tabungan.
+	 * 
+	 * @param acc objek Account yang sedang diakses
+	 */
 	public void getSaving(Account acc) {
 		boolean end = false;
 		while (!end) {
@@ -151,12 +176,17 @@ public class OptionMenu {
 		}
 	}
 
+	/**
+	 * Membuat akun baru dengan nomor pelanggan dan PIN yang dimasukkan pengguna.
+	 * 
+	 * @throws IOException jika terjadi kesalahan input/output
+	 */
 	public void createAccount() throws IOException {
 		int cst_no = 0;
 		boolean end = false;
 		while (!end) {
 			try {
-				System.out.println("\nMasukan nomor rekening baru");
+				System.out.println("\nMasukan nomor pelanggan baru");
 				cst_no = menuInput.nextInt();
 				Iterator it = data.entrySet().iterator();
 				while (it.hasNext()) {
@@ -166,7 +196,7 @@ public class OptionMenu {
 					}
 				}
 				if (!end) {
-					System.out.println("\nNomor rekening ini telah terdaftar");
+					System.out.println("\nNomor pelanggan ini telah terdaftar");
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("\nPilihan tidak valid.");
@@ -181,6 +211,11 @@ public class OptionMenu {
 		getLogin();
 	}
 
+	/**
+	 * Menampilkan menu utama untuk masuk atau membuat akun baru.
+	 * 
+	 * @throws IOException jika terjadi kesalahan input/output
+	 */
 	public void mainMenu() throws IOException {
 		data.put(952141, new Account(952141, 191904, 1000, 5000));
 		data.put(123, new Account(123, 123, 20000, 50000));
