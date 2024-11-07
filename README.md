@@ -6,7 +6,7 @@
 
 ## Docs
 
-- [Link Dokumentasi](https://example.com/javadocs)
+- [Link Dokumentasi](https://mrhrtz.github.io/Java-ATM/)
 
 ## Screenshot
 
